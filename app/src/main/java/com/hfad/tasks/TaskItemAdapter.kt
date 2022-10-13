@@ -6,18 +6,12 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 
-class TaskItemAdapter: RecyclerView.Adapter<TaskItemAdapter.TaskItemViewHolder>() {
-    var data = listOf<Task>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun getItemCount() = data.size
+class TaskItemAdapter: ListAdapter<Task, TaskItemAdapter.TaskItemViewHolder> (TaskDiffItemCallback()) {
 
     override fun onBindViewHolder(holder: TaskItemViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 
